@@ -1,20 +1,64 @@
 import { Button } from '@/components/livekit/button';
 
-function WelcomeImage() {
+function BrainIcon() {
   return (
     <svg
-      width="64"
-      height="64"
-      viewBox="0 0 64 64"
+      width="80"
+      height="80"
+      viewBox="0 0 80 80"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="text-fg0 mb-4 size-16"
+      className="mb-6"
     >
+      <defs>
+        <linearGradient id="brainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#6366f1" />
+          <stop offset="100%" stopColor="#8b5cf6" />
+        </linearGradient>
+      </defs>
       <path
-        d="M15 24V40C15 40.7957 14.6839 41.5587 14.1213 42.1213C13.5587 42.6839 12.7956 43 12 43C11.2044 43 10.4413 42.6839 9.87868 42.1213C9.31607 41.5587 9 40.7957 9 40V24C9 23.2044 9.31607 22.4413 9.87868 21.8787C10.4413 21.3161 11.2044 21 12 21C12.7956 21 13.5587 21.3161 14.1213 21.8787C14.6839 22.4413 15 23.2044 15 24ZM22 5C21.2044 5 20.4413 5.31607 19.8787 5.87868C19.3161 6.44129 19 7.20435 19 8V56C19 56.7957 19.3161 57.5587 19.8787 58.1213C20.4413 58.6839 21.2044 59 22 59C22.7956 59 23.5587 58.6839 24.1213 58.1213C24.6839 57.5587 25 56.7957 25 56V8C25 7.20435 24.6839 6.44129 24.1213 5.87868C23.5587 5.31607 22.7956 5 22 5ZM32 13C31.2044 13 30.4413 13.3161 29.8787 13.8787C29.3161 14.4413 29 15.2044 29 16V48C29 48.7957 29.3161 49.5587 29.8787 50.1213C30.4413 50.6839 31.2044 51 32 51C32.7956 51 33.5587 50.6839 34.1213 50.1213C34.6839 49.5587 35 48.7957 35 48V16C35 15.2044 34.6839 14.4413 34.1213 13.8787C33.5587 13.3161 32.7956 13 32 13ZM42 21C41.2043 21 40.4413 21.3161 39.8787 21.8787C39.3161 22.4413 39 23.2044 39 24V40C39 40.7957 39.3161 41.5587 39.8787 42.1213C40.4413 42.6839 41.2043 43 42 43C42.7957 43 43.5587 42.6839 44.1213 42.1213C44.6839 41.5587 45 40.7957 45 40V24C45 23.2044 44.6839 22.4413 44.1213 21.8787C43.5587 21.3161 42.7957 21 42 21ZM52 17C51.2043 17 50.4413 17.3161 49.8787 17.8787C49.3161 18.4413 49 19.2044 49 20V44C49 44.7957 49.3161 45.5587 49.8787 46.1213C50.4413 46.6839 51.2043 47 52 47C52.7957 47 53.5587 46.6839 54.1213 46.1213C54.6839 45.5587 55 44.7957 55 44V20C55 19.2044 54.6839 18.4413 54.1213 17.8787C53.5587 17.3161 52.7957 17 52 17Z"
-        fill="currentColor"
+        d="M40 10C35.5 10 31.5 11.8 28.5 14.8C25.2 13 21.5 12 17.5 12C7.8 12 0 19.8 0 29.5C0 33.2 1 36.7 2.8 39.8C1 43 0 46.7 0 50.5C0 60.2 7.8 68 17.5 68C19.2 68 20.8 67.8 22.3 67.3C25.3 71.5 30.2 74 35.5 74H44.5C49.8 74 54.7 71.5 57.7 67.3C59.2 67.8 60.8 68 62.5 68C72.2 68 80 60.2 80 50.5C80 46.7 79 43 77.2 39.8C79 36.7 80 33.2 80 29.5C80 19.8 72.2 12 62.5 12C58.5 12 54.8 13 51.5 14.8C48.5 11.8 44.5 10 40 10Z"
+        fill="url(#brainGradient)"
+        opacity="0.2"
+      />
+      <circle cx="25" cy="32" r="4" fill="#6366f1" />
+      <circle cx="55" cy="32" r="4" fill="#6366f1" />
+      <path
+        d="M30 45C30 45 35 50 40 50C45 50 50 45 50 45"
+        stroke="#6366f1"
+        strokeWidth="3"
+        strokeLinecap="round"
+        fill="none"
+      />
+      <path
+        d="M20 25C22 23 24 22 27 22"
+        stroke="#8b5cf6"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        fill="none"
+      />
+      <path
+        d="M60 25C58 23 56 22 53 22"
+        stroke="#8b5cf6"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        fill="none"
       />
     </svg>
+  );
+}
+
+function FeatureCard({ icon, title, description }) {
+  return (
+    <div className="flex items-start gap-3 p-4 rounded-xl bg-gradient-to-br from-indigo-50 to-purple-50 border border-indigo-100">
+      <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xl">
+        {icon}
+      </div>
+      <div className="flex-1 min-w-0">
+        <h3 className="font-semibold text-gray-900 text-sm mb-1">{title}</h3>
+        <p className="text-xs text-gray-600 leading-relaxed">{description}</p>
+      </div>
+    </div>
   );
 }
 
@@ -29,33 +73,116 @@ export const WelcomeView = ({
   ref,
 }: React.ComponentProps<'div'> & WelcomeViewProps) => {
   return (
-    <div ref={ref}>
-      <section className="bg-background flex flex-col items-center justify-center text-center">
-        <WelcomeImage />
+    <div ref={ref} className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center p-4">
+      <section className="max-w-4xl w-full">
+        {/* Header Badge */}
+        <div className="flex justify-center mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-sm font-medium shadow-lg">
+            <span className="animate-pulse"></span>
+            <span>AI Voice Agents Challenge</span>
+          </div>
+        </div>
 
-        <p className="text-foreground max-w-prose pt-1 leading-6 font-medium">
-          Chat live with your voice AI agent
-        </p>
+        {/* Main Content */}
+        <div className="text-center mb-8">
+          <div className="flex justify-center">
+            <BrainIcon />
+          </div>
+          
+          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-3">
+            Active Recall Coach
+          </h1>
+          
+          <p className="text-xl text-gray-700 font-medium mb-2">
+            Teach the Tutor & Master Any Subject
+          </p>
+          
+          <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            The best way to learn is to teach. Explain concepts to your AI tutor using just your voice, 
+            and get instant feedback to strengthen your understanding through active recall.
+          </p>
+        </div>
 
-        <Button variant="primary" size="lg" onClick={onStartCall} className="mt-6 w-64 font-mono">
-          {startButtonText}
-        </Button>
-      </section>
+        {/* Feature Grid */}
+        <div className="grid md:grid-cols-3 gap-4 mb-8 max-w-3xl mx-auto">
+          <FeatureCard
+            icon="."
+            title="Voice-First Learning"
+            description="Simply speak your explanations naturally - no typing required"
+          />
+          <FeatureCard
+            icon="."
+            title="Active Recall"
+            description="Strengthen memory by retrieving and explaining concepts yourself"
+          />
+          <FeatureCard
+            icon="."
+            title="Smart Feedback"
+            description="Get constructive insights to improve your understanding"
+          />
+        </div>
 
-      <div className="fixed bottom-5 left-0 flex w-full items-center justify-center">
-        <p className="text-muted-foreground max-w-prose pt-1 text-xs leading-5 font-normal text-pretty md:text-sm">
-          Need help getting set up? Check out the{' '}
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://docs.livekit.io/agents/start/voice-ai/"
-            className="underline"
+        {/* CTA Button */}
+        <div className="flex justify-center mb-8">
+          <Button 
+            variant="primary" 
+            size="lg" 
+            onClick={onStartCall}
+            className="w-full md:w-96 h-14 text-lg font-semibold bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white rounded-xl shadow-xl hover:shadow-2xl transition-all duration-200 transform hover:scale-105"
           >
-            Voice AI quickstart
-          </a>
-          .
-        </p>
-      </div>
+            <span className="flex items-center justify-center gap-2">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M10 2a4 4 0 00-4 4v4a4 4 0 008 0V6a4 4 0 00-4-4zM8 14.5a6 6 0 01-6-6v-1a1 1 0 112 0v1a4 4 0 008 0v-1a1 1 0 112 0v1a6 6 0 01-6 6v1.5h3a1 1 0 110 2H7a1 1 0 110-2h3V14.5z"/>
+              </svg>
+              {startButtonText}
+            </span>
+          </Button>
+        </div>
+
+        {/* How It Works */}
+        <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 max-w-2xl mx-auto mb-8">
+          <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <span className="text-2xl">📚</span>
+            How It Works
+          </h2>
+          <ol className="space-y-3 text-sm text-gray-700">
+            <li className="flex gap-3">
+              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 font-semibold flex items-center justify-center text-xs">1</span>
+              <span><strong>Choose a topic</strong> you want to learn or review</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 font-semibold flex items-center justify-center text-xs">2</span>
+              <span><strong>Explain it out loud</strong> to your AI tutor in your own words</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 font-semibold flex items-center justify-center text-xs">3</span>
+              <span><strong>Receive feedback</strong> on your explanation and identify knowledge gaps</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 font-semibold flex items-center justify-center text-xs">4</span>
+              <span><strong>Practice again</strong> to reinforce your learning and improve retention</span>
+            </li>
+          </ol>
+        </div>
+
+        {/* Footer */}
+        <div className="text-center">
+          <p className="text-sm text-gray-600 mb-2">
+            Powered by <span className="font-semibold text-indigo-600">LiveKit Voice AI</span>
+          </p>
+          <p className="text-xs text-gray-500">
+            Need help getting started?{' '}
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://docs.livekit.io/agents/start/voice-ai/"
+              className="text-indigo-600 hover:text-indigo-700 font-medium underline"
+            >
+              Check out the Voice AI quickstart
+            </a>
+          </p>
+        </div>
+      </section>
     </div>
   );
 };

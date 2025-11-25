@@ -123,8 +123,10 @@ export function TileLayout({ chatOpen }: TileLayoutProps) {
                     delay: animationDelay,
                   }}
                   className={cn(
-                    'bg-background aspect-square h-[90px] rounded-md border border-transparent transition-[border,drop-shadow]',
-                    chatOpen && 'border-input/50 drop-shadow-lg/10 delay-200'
+                    'aspect-square h-[90px] rounded-2xl border-2 transition-[border,drop-shadow,background]',
+                    'bg-gradient-to-br from-indigo-500/10 to-purple-500/10',
+                    chatOpen && 'border-indigo-300/50 drop-shadow-2xl shadow-indigo-500/20 delay-200',
+                    !chatOpen && 'border-indigo-400/30'
                   )}
                 >
                   <BarVisualizer
@@ -132,13 +134,15 @@ export function TileLayout({ chatOpen }: TileLayoutProps) {
                     state={agentState}
                     options={{ minHeight: 5 }}
                     trackRef={agentAudioTrack}
-                    className={cn('flex h-full items-center justify-center gap-1')}
+                    className={cn('flex h-full items-center justify-center gap-1.5')}
                   >
                     <span
                       className={cn([
-                        'bg-muted min-h-2.5 w-2.5 rounded-full',
+                        'min-h-2.5 w-2.5 rounded-full',
                         'origin-center transition-colors duration-250 ease-linear',
-                        'data-[lk-highlighted=true]:bg-foreground data-[lk-muted=true]:bg-muted',
+                        'bg-indigo-300',
+                        'data-[lk-highlighted=true]:bg-gradient-to-t data-[lk-highlighted=true]:from-indigo-500 data-[lk-highlighted=true]:to-purple-500',
+                        'data-[lk-muted=true]:bg-indigo-200',
                       ])}
                     />
                   </BarVisualizer>
@@ -161,7 +165,7 @@ export function TileLayout({ chatOpen }: TileLayoutProps) {
                     maskImage:
                       'radial-gradient(circle, rgba(0, 0, 0, 1) 0, rgba(0, 0, 0, 1) 500px, transparent 500px)',
                     filter: 'blur(0px)',
-                    borderRadius: chatOpen ? 6 : 12,
+                    borderRadius: chatOpen ? 16 : 20,
                   }}
                   transition={{
                     ...ANIMATION_TRANSITION,
@@ -174,7 +178,7 @@ export function TileLayout({ chatOpen }: TileLayoutProps) {
                     },
                   }}
                   className={cn(
-                    'overflow-hidden bg-black drop-shadow-xl/80',
+                    'overflow-hidden bg-gradient-to-br from-indigo-900 to-purple-900 drop-shadow-2xl ring-2 ring-indigo-400/30',
                     chatOpen ? 'h-[90px]' : 'h-auto w-full'
                   )}
                 >
@@ -219,13 +223,13 @@ export function TileLayout({ chatOpen }: TileLayoutProps) {
                     ...ANIMATION_TRANSITION,
                     delay: animationDelay,
                   }}
-                  className="drop-shadow-lg/20"
+                  className="drop-shadow-2xl ring-2 ring-purple-400/30"
                 >
                   <VideoTrack
                     trackRef={cameraTrack || screenShareTrack}
                     width={(cameraTrack || screenShareTrack)?.publication.dimensions?.width ?? 0}
                     height={(cameraTrack || screenShareTrack)?.publication.dimensions?.height ?? 0}
-                    className="bg-muted aspect-square w-[90px] rounded-md object-cover"
+                    className="bg-gradient-to-br from-indigo-100 to-purple-100 aspect-square w-[90px] rounded-2xl object-cover"
                   />
                 </MotionContainer>
               )}

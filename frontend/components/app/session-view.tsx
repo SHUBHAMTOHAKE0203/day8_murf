@@ -115,15 +115,24 @@ export const SessionView = ({
       {/* Bottom */}
       <MotionBottom
         {...BOTTOM_VIEW_MOTION_PROPS}
-        className="fixed inset-x-3 bottom-0 z-50 md:inset-x-12"
+        className="fixed inset-x-3 bottom-3 z-50 md:inset-x-12 md:bottom-6 mb-[40px]"
       >
         {appConfig.isPreConnectBufferEnabled && (
           <PreConnectMessage messages={messages} className="pb-4" />
         )}
-        <div className="bg-background relative mx-auto max-w-2xl pb-3 md:pb-12">
-          <Fade bottom className="absolute inset-x-0 top-0 h-4 -translate-y-full" />
-          <AgentControlBar controls={controls} onChatOpenChange={setChatOpen} />
-        </div>
+       <div className="relative mx-auto max-w-2xl pb-3 md:pb-12">
+  {/* Glow effect behind control bar */}
+  <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-indigo-500/20 via-purple-500/20 to-transparent blur-2xl pointer-events-none" />
+  
+  {/* Floating particles around control bar */}
+  <div className="absolute -top-8 left-1/4 w-2 h-2 bg-white/40 rounded-full animate-bounce pointer-events-none" style={{ animationDuration: '3s' }} />
+  <div className="absolute -top-12 right-1/3 w-1.5 h-1.5 bg-indigo-300/50 rounded-full animate-bounce pointer-events-none" style={{ animationDuration: '4s', animationDelay: '0.5s' }} />
+  <div className="absolute top-1/2 -left-4 w-2 h-2 bg-purple-300/40 rounded-full animate-pulse pointer-events-none" style={{ animationDuration: '3s' }} />
+  <div className="absolute top-1/2 -right-4 w-2 h-2 bg-pink-300/40 rounded-full animate-pulse pointer-events-none" style={{ animationDuration: '4s', animationDelay: '1s' }} />
+  
+  <Fade bottom className="absolute inset-x-0 top-0 h-4 -translate-y-full" />
+  <AgentControlBar controls={controls} onChatOpenChange={setChatOpen} />
+</div>
       </MotionBottom>
     </section>
   );
