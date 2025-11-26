@@ -30,7 +30,7 @@ export interface AgentControlBarProps extends UseInputControlsProps {
 }
 
 /**
- * A control bar specifically designed for voice assistant interfaces
+ * A control bar specifically designed for voice assistant interfaces - Nexyor Theme
  */
 export function AgentControlBar({
   controls,
@@ -90,22 +90,22 @@ export function AgentControlBar({
       aria-label="Voice assistant controls"
       className={cn(
         'relative overflow-hidden flex flex-col rounded-[31px] p-3 drop-shadow-2xl',
-        'bg-gradient-to-br from-indigo-500/90 via-purple-500/90 to-pink-500/90 backdrop-blur-xl',
-        'border-2 border-white/20 shadow-2xl shadow-indigo-500/50',
+        'bg-zinc-900/95 backdrop-blur-xl',
+        'border-2 border-zinc-800 shadow-2xl shadow-orange-500/20',
         className
       )}
       {...props}
     >
-      {/* Animated gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-tr from-indigo-400/30 via-purple-400/30 to-pink-400/30 animate-pulse pointer-events-none" style={{ animationDuration: '8s' }} />
+      {/* Animated gradient overlay - Nexyor orange */}
+      <div className="absolute inset-0 bg-gradient-to-tr from-orange-500/10 via-orange-600/5 to-orange-500/10 animate-pulse pointer-events-none" style={{ animationDuration: '8s' }} />
       
-      {/* Glowing orbs */}
-      <div className="absolute -top-10 -left-10 w-32 h-32 bg-indigo-300 rounded-full blur-3xl opacity-30 animate-pulse pointer-events-none" style={{ animationDuration: '6s' }} />
-      <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-purple-300 rounded-full blur-3xl opacity-30 animate-pulse pointer-events-none" style={{ animationDuration: '8s', animationDelay: '1s' }} />
+      {/* Glowing orbs - Orange theme */}
+      <div className="absolute -top-10 -left-10 w-32 h-32 bg-orange-500 rounded-full blur-3xl opacity-20 animate-pulse pointer-events-none" style={{ animationDuration: '6s' }} />
+      <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-orange-600 rounded-full blur-3xl opacity-20 animate-pulse pointer-events-none" style={{ animationDuration: '8s', animationDelay: '1s' }} />
       
-      {/* Sparkle effects */}
-      <div className="absolute top-2 right-8 text-lg opacity-40 animate-pulse pointer-events-none" style={{ animationDuration: '3s' }}>✨</div>
-      <div className="absolute bottom-3 left-6 text-sm opacity-30 animate-pulse pointer-events-none" style={{ animationDuration: '4s', animationDelay: '1s' }}>💫</div>
+      {/* Subtle accent lines */}
+      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-orange-500/30 to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-orange-500/30 to-transparent pointer-events-none" />
 
       {/* Content - increased z-index */}
       <div className="relative z-10">
@@ -175,13 +175,13 @@ export function AgentControlBar({
             </Toggle>
           </div>
 
-          {/* Disconnect */}
+          {/* Disconnect - Nexyor orange accent */}
           {visibleControls.leave && (
             <Button
               variant="destructive"
               onClick={handleDisconnect}
               disabled={!isSessionActive}
-              className="font-mono relative overflow-hidden bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 shadow-lg shadow-red-500/50"
+              className="font-mono relative overflow-hidden bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 shadow-lg shadow-orange-500/30 border border-orange-400/20"
             >
               <PhoneDisconnectIcon weight="bold" />
               <span className="hidden md:inline">END CALL</span>

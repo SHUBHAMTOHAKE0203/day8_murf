@@ -106,7 +106,7 @@ export function TileLayout({ chatOpen }: TileLayoutProps) {
           >
             <AnimatePresence mode="popLayout">
               {!isAvatar && (
-                // Audio Agent
+                // Audio Agent - Nexyor Theme
                 <MotionContainer
                   key="agent"
                   layoutId="agent"
@@ -124,9 +124,9 @@ export function TileLayout({ chatOpen }: TileLayoutProps) {
                   }}
                   className={cn(
                     'aspect-square h-[90px] rounded-2xl border-2 transition-[border,drop-shadow,background]',
-                    'bg-gradient-to-br from-indigo-500/10 to-purple-500/10',
-                    chatOpen && 'border-indigo-300/50 drop-shadow-2xl shadow-indigo-500/20 delay-200',
-                    !chatOpen && 'border-indigo-400/30'
+                    'bg-gradient-to-br from-orange-500/10 to-orange-600/10',
+                    chatOpen && 'border-orange-400/50 drop-shadow-2xl shadow-orange-500/30 delay-200',
+                    !chatOpen && 'border-orange-500/30'
                   )}
                 >
                   <BarVisualizer
@@ -140,9 +140,9 @@ export function TileLayout({ chatOpen }: TileLayoutProps) {
                       className={cn([
                         'min-h-2.5 w-2.5 rounded-full',
                         'origin-center transition-colors duration-250 ease-linear',
-                        'bg-indigo-300',
-                        'data-[lk-highlighted=true]:bg-gradient-to-t data-[lk-highlighted=true]:from-indigo-500 data-[lk-highlighted=true]:to-purple-500',
-                        'data-[lk-muted=true]:bg-indigo-200',
+                        'bg-orange-400',
+                        'data-[lk-highlighted=true]:bg-gradient-to-t data-[lk-highlighted=true]:from-orange-500 data-[lk-highlighted=true]:to-orange-600',
+                        'data-[lk-muted=true]:bg-orange-300',
                       ])}
                     />
                   </BarVisualizer>
@@ -150,7 +150,7 @@ export function TileLayout({ chatOpen }: TileLayoutProps) {
               )}
 
               {isAvatar && (
-                // Avatar Agent
+                // Avatar Agent - Nexyor Theme
                 <MotionContainer
                   key="avatar"
                   layoutId="avatar"
@@ -178,7 +178,7 @@ export function TileLayout({ chatOpen }: TileLayoutProps) {
                     },
                   }}
                   className={cn(
-                    'overflow-hidden bg-gradient-to-br from-indigo-900 to-purple-900 drop-shadow-2xl ring-2 ring-indigo-400/30',
+                    'overflow-hidden bg-gradient-to-br from-zinc-900 to-black drop-shadow-2xl ring-2 ring-orange-500/30',
                     chatOpen ? 'h-[90px]' : 'h-auto w-full'
                   )}
                 >
@@ -200,7 +200,7 @@ export function TileLayout({ chatOpen }: TileLayoutProps) {
               !chatOpen && classNames.secondTileChatClosed,
             ])}
           >
-            {/* Camera & Screen Share */}
+            {/* Camera & Screen Share - Nexyor Theme */}
             <AnimatePresence>
               {((cameraTrack && isCameraEnabled) || (screenShareTrack && isScreenShareEnabled)) && (
                 <MotionContainer
@@ -223,13 +223,13 @@ export function TileLayout({ chatOpen }: TileLayoutProps) {
                     ...ANIMATION_TRANSITION,
                     delay: animationDelay,
                   }}
-                  className="drop-shadow-2xl ring-2 ring-purple-400/30"
+                  className="drop-shadow-2xl ring-2 ring-orange-500/30"
                 >
                   <VideoTrack
                     trackRef={cameraTrack || screenShareTrack}
                     width={(cameraTrack || screenShareTrack)?.publication.dimensions?.width ?? 0}
                     height={(cameraTrack || screenShareTrack)?.publication.dimensions?.height ?? 0}
-                    className="bg-gradient-to-br from-indigo-100 to-purple-100 aspect-square w-[90px] rounded-2xl object-cover"
+                    className="bg-gradient-to-br from-zinc-900 to-black aspect-square w-[90px] rounded-2xl object-cover"
                   />
                 </MotionContainer>
               )}
