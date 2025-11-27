@@ -30,7 +30,7 @@ export interface AgentControlBarProps extends UseInputControlsProps {
 }
 
 /**
- * A control bar specifically designed for voice assistant interfaces - Nexyor Theme
+ * A control bar specifically designed for voice assistant interfaces - ICICI Bank Theme
  */
 export function AgentControlBar({
   controls,
@@ -89,23 +89,21 @@ export function AgentControlBar({
     <div
       aria-label="Voice assistant controls"
       className={cn(
-        'relative overflow-hidden flex flex-col rounded-[31px] p-3 drop-shadow-2xl',
-        'bg-zinc-900/95 backdrop-blur-xl',
-        'border-2 border-zinc-800 shadow-2xl shadow-orange-500/20',
+        'relative overflow-hidden flex flex-col rounded-2xl p-3 drop-shadow-lg',
+        'bg-white/98 backdrop-blur-xl',
+        'border-2 border-gray-200 shadow-xl',
         className
       )}
       {...props}
     >
-      {/* Animated gradient overlay - Nexyor orange */}
-      <div className="absolute inset-0 bg-gradient-to-tr from-orange-500/10 via-orange-600/5 to-orange-500/10 animate-pulse pointer-events-none" style={{ animationDuration: '8s' }} />
+      {/* Subtle gradient overlay - ICICI red/orange */}
+      <div className="absolute inset-0 bg-gradient-to-br from-red-50/50 via-orange-50/30 to-red-50/50 pointer-events-none" />
       
-      {/* Glowing orbs - Orange theme */}
-      <div className="absolute -top-10 -left-10 w-32 h-32 bg-orange-500 rounded-full blur-3xl opacity-20 animate-pulse pointer-events-none" style={{ animationDuration: '6s' }} />
-      <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-orange-600 rounded-full blur-3xl opacity-20 animate-pulse pointer-events-none" style={{ animationDuration: '8s', animationDelay: '1s' }} />
+      {/* Accent border glow */}
+      <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-red-500/10 pointer-events-none" />
       
-      {/* Subtle accent lines */}
-      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-orange-500/30 to-transparent pointer-events-none" />
-      <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-orange-500/30 to-transparent pointer-events-none" />
+      {/* Top accent line */}
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-red-500/40 to-transparent pointer-events-none" />
 
       {/* Content - increased z-index */}
       <div className="relative z-10">
@@ -175,13 +173,13 @@ export function AgentControlBar({
             </Toggle>
           </div>
 
-          {/* Disconnect - Nexyor orange accent */}
+          {/* Disconnect - ICICI red accent */}
           {visibleControls.leave && (
             <Button
               variant="destructive"
               onClick={handleDisconnect}
               disabled={!isSessionActive}
-              className="font-mono relative overflow-hidden bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 shadow-lg shadow-orange-500/30 border border-orange-400/20"
+              className="font-semibold relative overflow-hidden bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 shadow-lg shadow-red-500/25 border border-red-500/20"
             >
               <PhoneDisconnectIcon weight="bold" />
               <span className="hidden md:inline">END CALL</span>

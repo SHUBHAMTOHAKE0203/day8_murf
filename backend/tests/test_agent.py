@@ -1,83 +1,86 @@
-import os
+# test_agent.py
 import json
-import asyncio
-import pytest
 from pathlib import Path
+import pytest
+import os
 
-from livekit.agents import AgentSession, inference, llm
+from agent import FraudAgent, FRAUD_DB
 
-
-from agent import Assistant, load_faq, LEADS_FILE, FAQ_FILE
-
-TEST_FAQ = {
-    "company": "Pesto Labs",
-    "product_overview": "Pesto Labs helps engineers level up with interview prep and curated learning paths.",
-    "pricing": "There is a free tier with limited content. Paid plans start at ₹499/month.",
-    "faq": [
-        {"q": "What does the product do?", "a": "We provide interview prep and structured learning for software engineers."},
-        {"q": "Do you offer free tier?", "a": "Yes. We offer a free tier with limited access."},
-        {"q": "Who is this for?", "a": "Early-career and mid-career software engineers preparing for interviews."},
-    ],
+TEST_CASE = {
+    "userName": "john",
+    "securityIdentifier": "12345",
+    "securityQuestion": "What is your favorite color?",
+    "securityAnswer": "blue",
+    "cardEnding": "4242",
+    "transactionAmount": "₹2,499",
+    "transactionName": "ABC Industry",
+    "transactionTime": "2025-11-25 18:42",
+    "transactionLocation": "Mumbai",
+    "transactionCategory": "e-commerce",
+    "transactionSource": "alibaba.com",
+    "status": "pending_review",
+    "outcomeNote": ""
 }
 
-# small helper to write test faq
-def write_test_faq(tmp_path: Path):
-    faq_path = tmp_path / "company_faq.json"
-    with faq_path.open("w", encoding="utf-8") as f:
-        json.dump(TEST_FAQ, f, indent=2)
-    return str(faq_path)
 
-# LLM test harness (same pattern as examples)
-def _llm() -> llm.LLM:
-    return inference.LLM(model="openai/gpt-4.1-mini")  # change if needed
+def write_test_db(tmp_path: Path) -> str:
+    db_path = tmp_path / "fraud_cases.json"
+    with open(db_path, "w", encoding="utf-8") as f:
+        json.dump({"john": TEST_CASE}, f, indent=2)
+    return str(db_path)
+
 
 @pytest.mark.asyncio
-async def test_sdr_flow(tmp_path: Path, monkeypatch):
-    """
-    Simulate a user: greeting -> ask 'what do you do?' -> provide name/company/email -> thanks
-    Expect the agent to use the FAQ for answer and to save a lead record at the end.
-    """
-    # prepare test FAQ and leads path
-    faq_path = write_test_faq(tmp_path)
-    leads_path = tmp_path / "leads.json"
+async def test_full_flow(tmp_path, monkeypatch):
+    db_path = write_test_db(tmp_path)
+    monkeypatch.setenv("FRAUD_DB", db_path)
 
-    # point agent module to test files
-    monkeypatch.setenv("FAQ_FILE", faq_path)
-    monkeypatch.setenv("LEADS_FILE", str(leads_path))
+    agent = FraudAgent()
 
-    # reload module objects if necessary by reloading agent (optional)
-    # import importlib, agent
-    # importlib.reload(agent)
+    # load case
+    load_res = await agent.load_fraud_case(None, "john")
+    assert load_res.get("found") is True
+    assert agent.current_case["userName"] == "john"
 
-    # Instantiate assistant directly with loaded faq for local testing
-    faq_data = load_faq(faq_path)
-    assistant = Assistant(faq=faq_data)
+    # get summary
+    summary_res = await agent.get_transaction_summary(None)
+    assert "ABC Industry" in summary_res["summary"]
 
-    # Instead of running the full AgentSession (which requires plugin setup), we can directly test:
-    # 1) find_faq tool
-    result = await assistant.find_faq(None, "What does the product do?")
-    assert result.get("found") is True
-    assert "interview prep" in result.get("answer").lower()
+    # correct verification
+    v_ok = await agent.verify_answer(None, "blue")
+    assert v_ok.get("verified") is True
 
-    # 2) Simulate filling lead buffer and saving
-    lead = {
-        "name": "Test User",
-        "company": "ExampleCo",
-        "email": "test@example.com",
-        "role": "CTO",
-        "use_case": "Interview prep for team",
-        "team_size": "10",
-        "timeline": "soon",
-    }
-    save_res = await assistant.save_lead(None, lead)
-    assert save_res.get("status") == "ok"
+    # fraud branch (user says NO)
+    fraud_case = agent.build_outcome_note_and_status("fraud", "User denied transaction; mock action taken.")
+    update_res = await agent.update_fraud_case(None, fraud_case)
+    assert update_res.get("status") == "ok"
+    with open(db_path, "r", encoding="utf-8") as f:
+        db = json.load(f)
+    assert db["john"]["status"] == "confirmed_fraud"
 
-    # file should exist with the saved lead
-    assert leads_path.exists()
-    with open(leads_path, "r", encoding="utf-8") as f:
-        leads = json.load(f)
-    assert isinstance(leads, list)
-    assert any(l.get("email") == "test@example.com" for l in leads)
+    # reset DB for safe branch test
+    db_path2 = write_test_db(tmp_path)
+    monkeypatch.setenv("FRAUD_DB", db_path2)
+    agent2 = FraudAgent()
+    await agent2.load_fraud_case(None, "john")
+    v_ok2 = await agent2.verify_answer(None, "blue")
+    assert v_ok2.get("verified") is True
+    safe_case = agent2.build_outcome_note_and_status("safe", "User confirmed transaction.")
+    update_res2 = await agent2.update_fraud_case(None, safe_case)
+    assert update_res2.get("status") == "ok"
+    with open(db_path2, "r", encoding="utf-8") as f:
+        db2 = json.load(f)
+    assert db2["john"]["status"] == "confirmed_safe"
 
-    # 3) Basic behavior: assistant instructions contain 'SDR' hints and lead fields
-    assert "lead fields" in assistant.instructions.lower() or "collect these lead fields" in assistant.instructions.lower()
+    # verification failure
+    db_path3 = write_test_db(tmp_path)
+    monkeypatch.setenv("FRAUD_DB", db_path3)
+    agent3 = FraudAgent()
+    await agent3.load_fraud_case(None, "john")
+    v_fail = await agent3.verify_answer(None, "red")
+    assert v_fail.get("verified") is False
+    fail_case = agent3.build_outcome_note_and_status("verification_failed", "Failed verification.")
+    await agent3.update_fraud_case(None, fail_case)
+    with open(db_path3, "r", encoding="utf-8") as f:
+        db3 = json.load(f)
+    assert db3["john"]["status"] == "verification_failed"
