@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Vegetable Sandwich",
+    "ingredients": ["Whole Wheat Bread", "Tomato", "Cheddar Cheese", "Lettuce"],
+    "price": 120,
+    "category": "Snacks"
+  },
+  {
+    "name": "Omelette",
+    "ingredients": ["Eggs", "Milk", "Cheddar Cheese", "Tomato"],
+    "price": 80,
+    "category": "Breakfast"
+  },
+  {
+    "name": "Paneer Butter Masala",
+    "ingredients": ["Paneer", "Tomato", "Butter", "Cream"],
+    "price": 250,
+    "category": "Main Course"
+  },
+  {
+    "name": "Chicken Salad",
+    "ingredients": ["Chicken Breast", "Lettuce", "Tomato", "Apple"],
+    "price": 300,
+    "category": "Salad"
+  },
+  {
+    "name": "Fruit Smoothie",
+    "ingredients": ["Banana", "Apple", "Milk", "Honey"],
+    "price": 150,
+    "category": "Beverages"
+  }
+]

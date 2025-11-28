@@ -1,0 +1,16 @@
+{
+  "items": [
+    {
+      "name": "Milk",
+      "quantity": 1,
+      "price": 3.49
+    },
+    {
+      "name": "Eggs",
+      "quantity": 3,
+      "price": 4.99
+    }
+  ],
+  "total": 18.46,
+  "timestamp": "20251128_182120"
+}

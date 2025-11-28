@@ -1,0 +1,12 @@
+[
+  { "name": "Whole Wheat Bread", "category": "Groceries", "price": 2.99 },
+  { "name": "White Bread", "category": "Groceries", "price": 2.49 },
+  { "name": "Peanut Butter", "category": "Groceries", "price": 3.99 },
+  { "name": "Strawberry Jam", "category": "Groceries", "price": 3.49 },
+  { "name": "Pasta", "category": "Groceries", "price": 1.99 },
+  { "name": "Pasta Sauce", "category": "Groceries", "price": 2.99 },
+  { "name": "Eggs", "category": "Groceries", "price": 4.99 },
+  { "name": "Milk", "category": "Groceries", "price": 3.49 },
+  { "name": "Chips", "category": "Snacks", "price": 2.19 },
+  { "name": "Veggie Sandwich", "category": "Prepared Food", "price": 6.49 }
+]

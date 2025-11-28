@@ -1,0 +1,12 @@
+[
+  { "name": "Whole Wheat Bread", "category": "Bakery", "price": 50 },
+  { "name": "Milk", "category": "Dairy", "price": 45 },
+  { "name": "Eggs", "category": "Dairy", "price": 70 },
+  { "name": "Cheddar Cheese", "category": "Dairy", "price": 120 },
+  { "name": "Apple", "category": "Fruits", "price": 30 },
+  { "name": "Banana", "category": "Fruits", "price": 20 },
+  { "name": "Tomato", "category": "Vegetables", "price": 25 },
+  { "name": "Potato", "category": "Vegetables", "price": 20 },
+  { "name": "Chicken Breast", "category": "Meat", "price": 250 },
+  { "name": "Paneer", "category": "Dairy", "price": 180 }
+]
