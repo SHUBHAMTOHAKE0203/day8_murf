@@ -95,9 +95,9 @@ export const WelcomeView = ({
             <SecurityIcon />
             
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-              Fraud Alert
+              YJHD
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-orange-600 mt-1">
-                Verification System
+                GAME ADVENTURE TELLER
               </span>
             </h1>
             
